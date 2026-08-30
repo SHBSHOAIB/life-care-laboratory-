@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Register - Life Care Medical Laboratory</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #087f8c, #05b8a9);
+}
+
+.container {
+    width: 90%;
+    max-width: 420px;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.logo h1 {
+    color: #087f8c;
+    font-size: 28px;
+}
+
+.logo p {
+    color: #666;
+    margin-top: 5px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+label {
+    display: block;
+    margin-top: 13px;
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #444;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    font-size: 15px;
+    outline: none;
+}
+
+input:focus {
+    border-color: #087f8c;
+}
+
+button {
+    width: 100%;
+    margin-top: 22px;
+    padding: 12px;
+    border: none;
+    border-radius: 7px;
+    background: #087f8c;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #05636d;
+}
+
+.login-link {
+    text-align: center;
+    margin-top: 18px;
+}
+
+.login-link a {
+    color: #087f8c;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.message {
+    text-align: center;
+    margin-top: 15px;
+    color: green;
+    font-weight: bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="logo">
+        <h1>Life Care</h1>
+        <p>Medical Laboratory</p>
+    </div>
+
+    <h2>Staff Registration</h2>
+
+    <form id="registerForm">
+
+        <label>Full Name</label>
+
+        <input
+            type="text"
+            id="name"
+            placeholder="Enter your name"
+            required
+        >
+
+        <label>Email</label>
+
+        <input
+            type="email"
+            id="email"
+            placeholder="Enter your email"
+            required
+        >
+
+        <label>Password</label>
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Create password"
+            required
+        >
+
+        <button type="submit">
+            Register
+        </button>
+
+    </form>
+
+    <p class="message" id="message"></p>
+
+    <div class="login-link">
+        Already registered?
+        <a href="login.html">Login</a>
+    </div>
+
+</div>
+
+
+<script>
+
+document.getElementById("registerForm").addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+
+    let staff = {
+        name: name,
+        email: email,
+        password: password
+    };
+
+    localStorage.setItem("staff", JSON.stringify(staff));
+
+    document.getElementById("message").innerText =
+        "Registration successful!";
+
+    setTimeout(function() {
+        window.location.href = "login.html";
+    }, 1000);
+
+});
+
+</script>
+
+</body>
+</html>

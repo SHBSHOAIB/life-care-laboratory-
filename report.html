@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Test Report - Life Care Medical Laboratory</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #eef2f3;
+    color: #222;
+}
+
+/* REPORT */
+
+.report {
+    width: 94%;
+    max-width: 900px;
+    margin: 30px auto;
+    background: white;
+    padding: 40px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.12);
+}
+
+/* HEADER */
+
+.report-header {
+    text-align: center;
+    border-bottom: 3px solid #087f8c;
+    padding-bottom: 20px;
+}
+
+.report-header h1 {
+    color: #087f8c;
+    font-size: 30px;
+}
+
+.report-header h2 {
+    margin-top: 8px;
+    font-size: 20px;
+    color: #444;
+}
+
+.report-header p {
+    margin-top: 6px;
+    color: #777;
+}
+
+/* PATIENT DETAILS */
+
+.patient-details {
+    margin-top: 25px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    background: #f5fafa;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.detail {
+    padding: 5px;
+}
+
+.detail strong {
+    color: #087f8c;
+}
+
+/* TEST TABLE */
+
+.test-title {
+    margin-top: 30px;
+    margin-bottom: 12px;
+    color: #087f8c;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 14px;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
+th {
+    background: #087f8c;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background: #f8fafa;
+}
+
+/* STATUS */
+
+.status {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.completed {
+    background: #d4edda;
+    color: #155724;
+}
+
+.pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+/* NOTES */
+
+.notes {
+    margin-top: 25px;
+    padding: 15px;
+    background: #f5fafa;
+    border-left: 4px solid #087f8c;
+}
+
+.notes h3 {
+    color: #087f8c;
+    margin-bottom: 8px;
+}
+
+/* FOOTER */
+
+.report-footer {
+    margin-top: 40px;
+    text-align: center;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+}
+
+.report-footer p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* BUTTONS */
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+button,
+.back-btn {
+    padding: 11px 18px;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.print-btn {
+    background: #087f8c;
+}
+
+.back-btn {
+    background: #555;
+}
+
+.print-btn:hover {
+    background: #05636d;
+}
+
+.back-btn:hover {
+    background: #333;
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .report {
+        padding: 20px;
+    }
+
+    .patient-details {
+        grid-template-columns: 1fr;
+    }
+
+    .report-header h1 {
+        font-size: 24px;
+    }
+
+}
+
+/* PRINT */
+
+@media print {
+
+    body {
+        background: white;
+    }
+
+    .report {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        padding: 20px;
+        box-shadow: none;
+    }
+
+    .buttons {
+        display: none;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="report">
+
+
+    <!-- LAB HEADER -->
+
+    <div class="report-header">
+
+        <h1>
+            Life Care Medical Laboratory
+        </h1>
+
+        <h2>
+            Laboratory Test Report
+        </h2>
+
+        <p>
+            Diagnostic Laboratory Services
+        </p>
+
+    </div>
+
+
+
+    <!-- PATIENT DETAILS -->
+
+    <div class="patient-details">
+
+
+        <div class="detail">
+
+            <strong>Patient Name:</strong>
+
+            <span id="patientName"></span>
+
+        </div>
+
+
+        <div class="detail">
+
+            <strong>Patient ID:</strong>
+
+            <span id="patientId"></span>
+
+        </div>
+
+
+        <div class="detail">
+
+            <strong>Age:</strong>
+
+            <span id="patientAge"></span>
+
+        </div>
+
+
+        <div class="detail">
+
+            <strong>Gender:</strong>
+
+            <span id="patientGender"></span>
+
+        </div>
+
+
+        <div class="detail">
+
+            <strong>Referred By:</strong>
+
+            <span id="patientDoctor"></span>
+
+        </div>
+
+
+        <div class="detail">
+
+            <strong>Date:</strong>
+
+            <span id="patientDate"></span>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- TEST RESULT -->
+
+    <h3 class="test-title">
+        Test Results
+    </h3>
+
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>
+                    Test
+                </th>
+
+                <th>
+                    Result
+                </th>
+
+                <th>
+                    Normal Range
+                </th>
+
+                <th>
+                    Status
+                </th>
+
+            </tr>
+
+        </thead>
+
+
+        <tbody>
+
+            <tr>
+
+                <td id="testType">
+                </td>
+
+                <td id="result">
+                </td>
+
+                <td id="normalRange">
+                </td>
+
+                <td>
+
+                    <span
+                        id="status"
+                        class="status">
+                    </span>
+
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+
+
+    <!-- NOTES -->
+
+    <div class="notes">
+
+        <h3>
+            Laboratory Notes
+        </h3>
+
+        <p id="notes">
+            No additional notes.
+        </p>
+
+    </div>
+
+
+
+    <!-- FOOTER -->
+
+    <div class="report-footer">
+
+        <p>
+            This report is generated by
+            Life Care Medical Laboratory.
+        </p>
+
+
+        <div class="buttons">
+
+            <button
+                class="print-btn"
+                onclick="window.print()">
+
+                🖨 Print Report
+
+            </button>
+
+
+            <a
+                href="patients.html"
+                class="back-btn">
+
+                ← Back to Patients
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+<script>
+
+/* LOGIN CHECK */
+
+if (localStorage.getItem("loggedIn") !== "true") {
+
+    window.location.href = "login.html";
+
+}
+
+
+/* GET ID FROM URL */
+
+let urlParams =
+    new URLSearchParams(window.location.search);
+
+let patientId =
+    Number(urlParams.get("id"));
+
+
+/* GET PATIENT DATA */
+
+let patients =
+    JSON.parse(localStorage.getItem("patients")) || [];
+
+
+let patient =
+    patients.find(function(item) {
+
+        return item.id === patientId;
+
+    });
+
+
+/* PATIENT NOT FOUND */
+
+if (!patient) {
+
+    alert("Patient record not found.");
+
+    window.location.href = "patients.html";
+
+}
+
+
+/* DISPLAY DATA */
+
+document.getElementById("patientName").innerText =
+    patient.name;
+
+document.getElementById("patientId").innerText =
+    patient.id;
+
+document.getElementById("patientAge").innerText =
+    patient.age;
+
+document.getElementById("patientGender").innerText =
+    patient.gender;
+
+document.getElementById("patientDoctor").innerText =
+    patient.doctor;
+
+document.getElementById("patientDate").innerText =
+    patient.date;
+
+document.getElementById("testType").innerText =
+    patient.testType;
+
+
+/* RESULT */
+
+document.getElementById("result").innerText =
+    patient.result || "Not Available";
+
+
+/* NORMAL RANGE */
+
+document.getElementById("normalRange").innerText =
+    patient.normalRange || "Not Available";
+
+
+/* STATUS */
+
+let status =
+    document.getElementById("status");
+
+status.innerText =
+    patient.status || "Pending";
+
+
+if (patient.status === "Completed") {
+
+    status.classList.add("completed");
+
+} else {
+
+    status.classList.add("pending");
+
+}
+
+
+/* NOTES */
+
+document.getElementById("notes").innerText =
+    patient.notes || "No additional notes.";
+
+</script>
+
+
+</body>
+
+</html>
