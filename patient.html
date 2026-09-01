@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Add Patient - Life Care Medical Laboratory</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f3f7f8;
+    color: #222;
+}
+
+/* Header */
+
+header {
+    background: #087f8c;
+    color: white;
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.logo h1 {
+    font-size: 24px;
+}
+
+.logo p {
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+nav {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 9px 12px;
+    border-radius: 5px;
+}
+
+nav a:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+/* Container */
+
+.container {
+    width: 90%;
+    max-width: 700px;
+    margin: 35px auto;
+}
+
+/* Form */
+
+.form-box {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.form-box h2 {
+    text-align: center;
+    color: #087f8c;
+    margin-bottom: 25px;
+}
+
+.form-group {
+    margin-bottom: 17px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 7px;
+    color: #444;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    font-size: 15px;
+    outline: none;
+}
+
+input:focus,
+select:focus {
+    border-color: #087f8c;
+}
+
+/* Button */
+
+button {
+    width: 100%;
+    padding: 13px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 7px;
+    background: #087f8c;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #05636d;
+}
+
+/* Message */
+
+.message {
+    display: none;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.success {
+    display: block;
+    background: #d9f7df;
+    color: #176b2c;
+}
+
+.error {
+    display: block;
+    background: #ffdede;
+    color: #b71c1c;
+}
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<header>
+
+    <div class="logo">
+
+        <h1>Life Care Medical Laboratory</h1>
+
+        <p>Laboratory Management System</p>
+
+    </div>
+
+
+    <nav>
+
+        <a href="dashboard.html">
+            Dashboard
+        </a>
+
+        <a href="patient.html">
+            Add Patient
+        </a>
+
+        <a href="patients.html">
+            Patients
+        </a>
+
+        <a href="login.html"
+           onclick="logout()">
+            Logout
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- MAIN -->
+
+<div class="container">
+
+
+    <div class="form-box">
+
+        <h2>Patient Entry Form</h2>
+
+
+        <div id="message"
+             class="message">
+        </div>
+
+
+        <form id="patientForm">
+
+
+            <!-- Patient Name -->
+
+            <div class="form-group">
+
+                <label>
+                    Patient Name
+                </label>
+
+                <input
+                    type="text"
+                    id="patientName"
+                    placeholder="Enter patient name"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Age -->
+
+            <div class="form-group">
+
+                <label>
+                    Age
+                </label>
+
+                <input
+                    type="number"
+                    id="age"
+                    placeholder="Enter age"
+                    min="0"
+                    max="120"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Gender -->
+
+            <div class="form-group">
+
+                <label>
+                    Gender
+                </label>
+
+                <select id="gender" required>
+
+                    <option value="">
+                        Select Gender
+                    </option>
+
+                    <option value="Male">
+                        Male
+                    </option>
+
+                    <option value="Female">
+                        Female
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Test Type -->
+
+            <div class="form-group">
+
+                <label>
+                    Test Type
+                </label>
+
+                <select id="testType" required>
+
+                    <option value="">
+                        Select Test
+                    </option>
+
+                    <option value="CBC">
+                        CBC
+                    </option>
+
+                    <option value="Blood Sugar">
+                        Blood Sugar
+                    </option>
+
+                    <option value="Cholesterol">
+                        Cholesterol
+                    </option>
+
+                    <option value="Hemoglobin">
+                        Hemoglobin
+                    </option>
+
+                    <option value="Urine Test">
+                        Urine Test
+                    </option>
+
+                    <option value="Liver Function Test">
+                        Liver Function Test
+                    </option>
+
+                    <option value="Kidney Function Test">
+                        Kidney Function Test
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Doctor -->
+
+            <div class="form-group">
+
+                <label>
+                    Referred By Doctor
+                </label>
+
+                <input
+                    type="text"
+                    id="doctor"
+                    placeholder="Enter doctor name"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Submit -->
+
+            <button type="submit">
+                Save Patient
+            </button>
+
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+/* LOGIN CHECK */
+
+if (localStorage.getItem("loggedIn") !== "true") {
+
+    window.location.href = "login.html";
+
+}
+
+
+/* PATIENT FORM */
+
+document
+.getElementById("patientForm")
+.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+
+    let patientName =
+        document.getElementById("patientName").value.trim();
+
+
+    let age =
+        document.getElementById("age").value;
+
+
+    let gender =
+        document.getElementById("gender").value;
+
+
+    let testType =
+        document.getElementById("testType").value;
+
+
+    let doctor =
+        document.getElementById("doctor").value.trim();
+
+
+    /* Get Existing Patients */
+
+    let patients =
+        JSON.parse(localStorage.getItem("patients")) || [];
+
+
+    /* Create New Patient */
+
+    let patient = {
+
+        id: Date.now(),
+
+        name: patientName,
+
+        age: age,
+
+        gender: gender,
+
+        testType: testType,
+
+        doctor: doctor,
+
+        result: "",
+
+        normalRange: "",
+
+        status: "Pending",
+
+        date: new Date().toLocaleDateString()
+
+    };
+
+
+    /* Add Patient */
+
+    patients.push(patient);
+
+
+    /* Save */
+
+    localStorage.setItem(
+        "patients",
+        JSON.stringify(patients)
+    );
+
+
+    /* Success Message */
+
+    let message =
+        document.getElementById("message");
+
+    message.innerText =
+        "Patient saved successfully!";
+
+    message.className =
+        "message success";
+
+
+    /* Clear Form */
+
+    document.getElementById("patientForm").reset();
+
+
+    /* Go to Patients */
+
+    setTimeout(function() {
+
+        window.location.href = "patients.html";
+
+    }, 1000);
+
+});
+
+
+
+/* LOGOUT */
+
+function logout() {
+
+    localStorage.removeItem("loggedIn");
+
+}
+
+</script>
+
+
+</body>
+
+</html>
